@@ -8,25 +8,25 @@ def _char_to_cell(char):
     else:
         raise Exception("Unknown cell value")
 
-def _stringlist_to_pattern(stringlist):
+def _lista_to_pattern(lista):
     pattern = []
-    for row in stringlist:
+    for fila in lista:
         pattern.append([])
-        for char in row:
+        for char in fila:
             pattern[-1].append(_char_to_cell(char))
     return pattern
 
 def string_to_pattern(string):
-    stringlist = string.split("\n")
-    if stringlist[-1] == "":
-        stringlist = stringlist[:-1]
-    for row in stringlist[1:]:
-        assert len(row) == len(stringlist[0])
-    return _stringlist_to_pattern(stringlist)
+    lista = string.split("\n")
+    if lista[-1] == "":
+        lista = lista[:-1]
+    for fila in lista[1:]:
+        assert len(fila) == len(lista[0])
+    return _lista_to_pattern(lista)
 
 def pattern(f, *args, **kwargs):
     """Pattern decorator"""
-    return _stringlist_to_pattern(f(*args, **kwargs))
+    return _lista_to_pattern(f(*args, **kwargs))
 
 @pattern
 def GLIDER():

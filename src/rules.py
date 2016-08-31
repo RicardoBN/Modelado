@@ -8,11 +8,11 @@ class UnexpectedCellException(Exception):
 
 def compute_rule_diff(grid, rule, *args, **kwargs):
     changes = {}
-    for row in range(len(grid)):
-        for col in range(len(grid[0])):
-            cell = rule(grid, row, col, *args, **kwargs)
-            if cell != grid[row][col]:
-                changes[(row, col)] = cell
+    for fila in range(len(grid)):
+        for columna in range(len(grid[0])):
+            cell = rule(grid, fila, columna, *args, **kwargs)
+            if cell != grid[fila][columna]:
+                changes[(fila, columna)] = cell
     return changes
 
 def apply_diff(grid, diff):

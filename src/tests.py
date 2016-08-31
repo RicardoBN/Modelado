@@ -34,12 +34,12 @@ class ConwayTest(AutomataTest):
         self.grid.write_pattern(patterns.GLIDER)
         self.next()
        
-        for row in range(len(self.grid)):
-            for col in range(len(self.grid)):
-                if (row, col) in [(4,3), (4,5), (5,3), (5,4), (6,4)]:
-                    self.assertEqual(self.grid[row][col], 1)
+        for fila in range(len(self.grid)):
+            for columna in range(len(self.grid)):
+                if (fila, columna) in [(4,3), (4,5), (5,3), (5,4), (6,4)]:
+                    self.assertEqual(self.grid[fila][columna], 1)
                 else:
-                    self.assertEqual(self.grid[row][col], 0)
+                    self.assertEqual(self.grid[fila][columna], 0)
 
 
 class RefractorTest(AutomataTest):
