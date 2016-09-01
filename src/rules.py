@@ -29,7 +29,7 @@ def apply_rule(grid, rule, *args, **kwargs):
 # Rules
 
 def rule_conway(grid, i, j):
-    n = sum(neighbors(grid, i, j))
+    n = sum(vecinos(grid, i, j))
     if grid[i][j]:
         # Cell is alive
         return 1 if 1 < n < 4 else 0
@@ -41,8 +41,8 @@ def rule_refractor(grid, i, j):
     # Excitable medium
     # https://en.wikipedia.org/wiki/Excitable_medium
     if grid[i][j] == 0:
-        nc = neighbors_cross(grid, i, j)
-        nc2 = neighbors_cross(grid, i, j, steps=2)
+        nc = vecinos_cruz(grid, i, j)
+        nc2 = vecinos_cruz(grid, i, j, steps=2)
         if any([(nc[i] == 1) and (nc2[i] == -1) for i in range(4)]):
             return 1
         else:
@@ -57,13 +57,13 @@ def rule_refractor(grid, i, j):
 
 def rule_cyclic(grid, i, j, n):
     next_state = (grid[i][j]+1) % n
-    if next_state in neighbors(grid, i, j):
+    if next_state in vecinos(grid, i, j):
         return next_state
     return grid[i][j]
 
 def rule_highlife(grid, i, j):
     """The Highlife rule"""
-    n = sum(neighbors(grid, i, j))
+    n = sum(vecinos(grid, i, j))
     if grid[i][j]:
         # Is alive
         return 1 if n in (2, 3) else 0
@@ -86,9 +86,9 @@ def rule_wireworld(grid, i, j):
         return grid[i][j]
     elif grid[i][j] == 1:
         # Cell is part of circuit and not excited or refractory (conductor)
-        nc = neighbors(grid, i, j)
+        nc = vecinos(grid, i, j)
         if 3 > sum(map(lambda x: 1 if x == 2 else 0, nc)) > 0:
-            # Cell has exactly one or two alive neighbors
+            # Cell has exactly one or two alive vecinos
             return 2
         else:
             return 1

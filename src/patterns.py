@@ -8,33 +8,33 @@ def _char_to_cell(char):
     else:
         raise Exception("Unknown cell value")
 
-def _lista_to_pattern(lista):
-    pattern = []
+def _lista_to_patron(lista):
+    patron = []
     for fila in lista:
-        pattern.append([])
+        patron.append([])
         for char in fila:
-            pattern[-1].append(_char_to_cell(char))
-    return pattern
+            patron[-1].append(_char_to_cell(char))
+    return patron
 
-def string_to_pattern(string):
+def string_to_patron(string):
     lista = string.split("\n")
     if lista[-1] == "":
         lista = lista[:-1]
     for fila in lista[1:]:
         assert len(fila) == len(lista[0])
-    return _lista_to_pattern(lista)
+    return _lista_to_patron(lista)
 
-def pattern(f, *args, **kwargs):
-    """Pattern decorator"""
-    return _lista_to_pattern(f(*args, **kwargs))
+def patron(f, *args, **kwargs):
+    """patron decorator"""
+    return _lista_to_patron(f(*args, **kwargs))
 
-@pattern
+@patron
 def GLIDER():
     return [".x.",
             "x..",
             "xxx"]
             
-@pattern
+@patron
 def GLIDER_GUN():
     return ["..........................................",
             "...........................x..............",
@@ -49,12 +49,12 @@ def GLIDER_GUN():
             "..........................................",
             "..........................................",
             "..........................................",
-            "..........................................",
-            "..........................................",
-            "..........................................",
+            "...........xxxxxxxxx..........x...........",
+            ".............................xxx..........",
+            "..............................x...........",
             ".........................................."]
 
-@pattern
+@patron
 def WIREWORLD_TRACK():
     return ["...........",
             "..1111111..",
@@ -62,20 +62,20 @@ def WIREWORLD_TRACK():
             "..1111111..",
             "..........."]
 
-@pattern
+@patron
 def WIREWORLD_DIODE():
-    return ["............",
+    return ["11........11",
             ".....11.....",
             "111111.11111",
             ".....11.....",
-            "............"]
+            "11........11"]
 
-@pattern
+@patron
 def HIGHLIFE_REPLICATOR():
-    return [".......",
+    return ["xx...xx",
             "...xxx.",
             "..x..x.",
             ".x...x.",
             ".x..x..",
             ".xxx...",
-            "......."]
+            "xx....xx"]

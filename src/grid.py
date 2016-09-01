@@ -4,9 +4,9 @@ import columnaorama
 from columnaorama import Fore
 columnaorama.init()
 
-# Neighbors helper functions
+# vecinos helper functions
 
-def neighbors(g, r, c):
+def vecinos(g, r, c):
     """
     Returns the Moore neighborhood
     .....
@@ -23,7 +23,7 @@ def neighbors(g, r, c):
             g[r2][c1],            g[r2][c3],
             g[r3][c1], g[r3][c2], g[r3][c3]]
     
-def neighbors_cross(g, r, c, steps=1):
+def vecinos_cruz(g, r, c, steps=1):
     """
     Returns the immediate von Neumann neighborhood.
 
@@ -49,10 +49,10 @@ def neighbors_cross(g, r, c, steps=1):
            g[r2][c1],           g[r2][c3],
                       g[r3][c2]]
 
-def neighbors_neumann_extended(g, r, c):
+def vecinos_neumann_extended(g, r, c):
     """Returns the entire extended von Neumann neighborhood"""
-    inner = neighbors_cross(g, r, c)
-    outer = neighbors_cross(g, r, c, steps=2)
+    inner = vecinos_cruz(g, r, c)
+    outer = vecinos_cruz(g, r, c, steps=2)
     return [outer[0], inner[0], outer[1], inner[1], inner[2], outer[2], inner[3], outer[3]]
 
 
@@ -71,9 +71,9 @@ class Grid():
         self._grid = [[0 for _ in range(columnas)] for _ in range(filas)]
 
     @classmethod
-    def from_pattern(cls, pattern):
-        self = cls(len(pattern), len(pattern[0]))
-        self.write_pattern(pattern)
+    def from_patron(cls, patron):
+        self = cls(len(patron), len(patron[0]))
+        self.write_patron(patron)
         return self
 
     def __getitem__(self, index):
@@ -82,16 +82,16 @@ class Grid():
     def __len__(self):
         return self._filas
 
-    def write_pattern(self, pattern, offset_fila=0, offset_columna=0):
-        if len(pattern)+offset_fila > self._filas or len(pattern[0])+offset_columna > self._columnas:
+    def write_patron(self, patron, offset_fila=0, offset_columna=0):
+        if len(patron)+offset_fila > self._filas or len(patron[0])+offset_columna > self._columnas:
             raise Exception("Grid size too small for given initializer state and offset {}".format((offset_fila, offset_columna)))
         dfila = int(self._filas/2)
         dcolumna = int(self._columnas/2)
-        difila = int(len(pattern)/2)
-        dicolumna = int(len(pattern[0])/2)
-        for fila in range(len(pattern)):
-            for columna in range(len(pattern[0])):
-                self[dfila+fila-difila+offset_fila][dcolumna+columna-dicolumna+offset_columna] = pattern[fila][columna]
+        difila = int(len(patron)/2)
+        dicolumna = int(len(patron[0])/2)
+        for fila in range(len(patron)):
+            for columna in range(len(patron[0])):
+                self[dfila+fila-difila+offset_fila][dcolumna+columna-dicolumna+offset_columna] = patron[fila][columna]
 
     def randomize(self, lower=0, upper=1):
         for fila in range(self._filas):
