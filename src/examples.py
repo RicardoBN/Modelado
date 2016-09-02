@@ -8,7 +8,7 @@ from .patrons import *
 _examples = {}
 
 def example(f):
-    """A decorator that registers a function as an example"""
+    """A decorador que registra una función como un ejemplo"""
     _examples[f.__name__] = f
     return f
 
@@ -42,12 +42,12 @@ def wireworld_diodes():
     columnas = 12
     grid = Grid(filas, columnas)
 
-    # Write diode with input in conducting direction
+    # Dibuja un diodo con la entrada en la realización de dirección
     grid.write_patron(WIREWORLD_DIODE, offset_fila = -2)
     grid[2][3] = 3
     grid[2][4] = 2
 
-    # Write diode with input from previous diode in isolating direction
+    # Escribe diodo con el aporte de diodo anterior en el aislamiento de dirección
     grid.write_patron(WIREWORLD_DIODE, offset_fila = 2)
     grid[6][11] = 0
     for i in range(3, 6):

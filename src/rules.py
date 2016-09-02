@@ -4,7 +4,7 @@ class UnexpectedCellException(Exception):
     pass
 
 
-# Rule application helper functions
+# Funciones de ayuda de regla
 
 def compute_rule_diff(grid, rule, *args, **kwargs):
     changes = {}
@@ -26,7 +26,7 @@ def apply_rule(grid, rule, *args, **kwargs):
     return apply_diff(grid, diff)
 
 
-# Rules
+# Reglas
 
 def rule_conway(grid, i, j):
     n = sum(vecinos(grid, i, j))
@@ -99,4 +99,4 @@ def rule_wireworld(grid, i, j):
         # Cell is refractory, return to dead conductor
         return 1
     else:
-        raise UnexpectedCellException("Should never happen")
+        raise UnexpectedCellException("Esto no debería pasar")

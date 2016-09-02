@@ -4,11 +4,11 @@ import columnaorama
 from columnaorama import Fore
 columnaorama.init()
 
-# vecinos helper functions
+# Ayuda con las funciondes de vecindad
 
 def vecinos(g, r, c):
     """
-    Returns the Moore neighborhood
+    Regresa la vecindad de
     .....
     .xxx.
     .xcx.
@@ -25,7 +25,7 @@ def vecinos(g, r, c):
     
 def vecinos_cruz(g, r, c, steps=1):
     """
-    Returns the immediate von Neumann neighborhood.
+    Regresa la vecindad de von Neumann neighborhood immediata.
 
     .....
     ..x..
@@ -33,7 +33,7 @@ def vecinos_cruz(g, r, c, steps=1):
     ..x..
     .....
 
-    You can use steps=2 to instead get the 4 cells included in the extended neighborhood.
+    Puedes usar steps=2 para conseguir las 4 celulas incluidad en la vecindad extendida
 
     ..x..
     .....
@@ -50,13 +50,13 @@ def vecinos_cruz(g, r, c, steps=1):
                       g[r3][c2]]
 
 def vecinos_neumann_extended(g, r, c):
-    """Returns the entire extended von Neumann neighborhood"""
+    """Regresa la vecindad de von Neumann extendida"""
     inner = vecinos_cruz(g, r, c)
     outer = vecinos_cruz(g, r, c, steps=2)
     return [outer[0], inner[0], outer[1], inner[1], inner[2], outer[2], inner[3], outer[3]]
 
 
-# Grid functions
+# Funciones de reja
 
 def _position_cursor(fila, columna):
     print("\033[" + str(fila) + ";" + str(columna) + "H", end="")

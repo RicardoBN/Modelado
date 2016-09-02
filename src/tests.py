@@ -110,16 +110,16 @@ class WireworldTest(AutomataTest):
         for _ in range(2):
             self.next()
         
-        # Check left track
+        # Checa el recorrido por la izquierda
         self.assertEquals(self.grid[1][5], 2)
         self.assertEquals(self.grid[1][6], 3)
 
-        # Check down track
+        # Checa el recorrido por abajo
         self.assertEquals(self.grid[3][6], 2)
         self.assertEquals(self.grid[2][6], 3)
 
     def test_transistor(self):
-        # Tests a component with transistor-like behavior
+        # Prueba un componente con un comportamiento tipo transistor
         pass
 
 

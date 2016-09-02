@@ -10,7 +10,7 @@ from . import examples
 
 
 def patron_from_stdin():
-    # TODO: Enable choice of rule
+    # TODO: Habilita la elecion de regla
     patron = sys.stdin.read()
     patron = string_to_patron(patron)
     grid = Grid.from_patron(patron)
